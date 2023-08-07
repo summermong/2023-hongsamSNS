@@ -1,0 +1,12 @@
+.postItem {
+  box-sizing: border-box;
+}
+.postFooterNickName {
+  flex-grow: 0;
+}
+.postFooterLike {
+  flex-grow: 0;
+}
+.postFooterTitle {
+  flex-grow: 3;
+}

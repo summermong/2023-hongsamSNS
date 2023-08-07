@@ -1,0 +1,8 @@
+.centerSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 50%;
+  height: 100%;
+}

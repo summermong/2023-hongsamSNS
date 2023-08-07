@@ -1,12 +1,3 @@
-.w-20 {
-  width: 20%;
-}
-.h-10 {
-  height: 10%;
-}
-.w-30 {
-  width: 30%;
-}
 .main-back-color {
   background-color: #deb4ff;
   color: #f4f4f4;
@@ -15,4 +6,34 @@
   height: 40px;
   border-radius: 5px;
   font-weight: 900;
+}
+.main-color {
+  background-color: #deb4ff;
+  color: #f4f4f4;
+}
+.profile-img-box {
+  width: 60px;
+  height: 60px;
+}
+.p-fixed {
+  position: fixed;
+}
+.write-btn {
+  width: 90px;
+  height: 90px;
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+}
+
+@media screen and (max-width: 1024px) {
+  .p-fixed {
+    position: relative;
+  }
+  .write-btn {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+  }
 }

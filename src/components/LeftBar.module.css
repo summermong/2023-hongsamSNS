@@ -1,0 +1,27 @@
+.nav {
+  box-sizing: border-box;
+}
+.navContainer {
+  position: fixed;
+  height: 100vh;
+  left: 0;
+}
+.navItem {
+  font-size: 24px;
+}
+.navLogo {
+  font-size: 38px;
+}
+@media screen and (max-width: 991px) {
+  .navContainer {
+    height: auto;
+  }
+  .navItem {
+    text-align: center;
+    font-size: 18px;
+  }
+  .navLogo {
+    text-align: center;
+    font-size: 24px;
+  }
+}
