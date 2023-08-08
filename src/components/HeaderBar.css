@@ -1,7 +1,7 @@
 .header-container {
+  position: relative;
   height: 100px;
-  position: fixed;
-  width: 50%;
+  width: 75%;
   z-index: 1;
   background-color: white;
 }

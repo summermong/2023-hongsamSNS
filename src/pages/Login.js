@@ -34,7 +34,6 @@ export default function Login() {
               ></input>
             </div>
           </div>
-
           <button type="submit" className="mb-5 mt-5 col-12 btn btn-primary">
             로그인
           </button>

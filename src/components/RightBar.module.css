@@ -1,4 +1,21 @@
-.profileContainer {
+.rightBarContainer {
+  height: 100vh;
   position: fixed;
   right: 0;
+  border-left: 1px #d4d4d4 solid;
+}
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 991px) {
+  .rightBarContainer {
+    top: 200px;
+    height: auto;
+    border: none;
+  }
+  .profileText {
+    display: none;
+  }
 }

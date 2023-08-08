@@ -23,7 +23,7 @@ export default function Post() {
           className="postBodyImg w-100"
         />
       </div>
-      <div className={`${styles.postFooter} d-flex`}>
+      <div className={`${styles.postFooter} d-flex flex-column flex-lg-row`}>
         <p className={`${styles.postFooterNickName} m-2 p-3`}>닉네임</p>
         <p className={`${styles.postFooterTitle} m-2 p-3`}>제목</p>
         <p className={`${styles.postFooterLike} m-2 p-3`}>좋아요</p>

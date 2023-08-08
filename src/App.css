@@ -14,6 +14,7 @@
 .profile-img-box {
   width: 60px;
   height: 60px;
+  cursor: pointer;
 }
 .p-fixed {
   position: fixed;
@@ -24,6 +25,12 @@
   position: fixed;
   bottom: 40px;
   right: 60px;
+}
+.centerSection {
+  position: absolute;
+  background-color: red;
+}
+@media screen and (max-width: 991px) {
 }
 
 @media screen and (max-width: 1024px) {
