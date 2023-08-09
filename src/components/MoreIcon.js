@@ -5,14 +5,19 @@ export default function MoreIcon({
   deleteModalBtn,
   setDeleteModalBtn,
   btnToggle,
+  updatePageBtn,
+  setUpdatePageBtn,
+  itemId,
 }) {
+  console.log("itemId :" + itemId);
   const navigator = useNavigate();
   return (
     <div className="position-absolute end-0 bg-light d-flex flex-column">
       <p
         className="pe-4 ps-4 pt-1 pb-1 m-0 border-bottom btn"
         onClick={() => {
-          navigator("/update");
+          navigator(`/update/${itemId}`);
+          btnToggle(updatePageBtn, setUpdatePageBtn);
         }}
       >
         수정하기

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import HeaderBar from "../components/HeaderBar";
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
 import Items from "./Items";
-import styles from "./Main.module.css";
-import { Link, Route, Routes } from "react-router-dom";
-import Create from "../components/Create";
 
-export default function Main({ items, setItems }) {
+export default function Main({ items, setItems, deleteItem }) {
   return (
     <div className="row justify-content-center">
       <LeftBar></LeftBar>
@@ -15,7 +14,11 @@ export default function Main({ items, setItems }) {
         className={`centerSection col-8 d-flex flex-column align-items-center`}
       >
         <HeaderBar></HeaderBar>
-        <Items items={items} setItems={setItems}></Items>
+        <Items
+          items={items}
+          setItems={setItems}
+          deleteItem={deleteItem}
+        ></Items>
       </div>
       <RightBar></RightBar>
       <Link to="/create" style={{ textDecoration: "none", color: "black" }}>

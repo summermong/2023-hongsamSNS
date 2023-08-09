@@ -1,22 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function Create({ items, setItems }) {
+export default function Create({ createItem }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let copyItems = [...items];
-    let newItem = {
-      itemId: 3,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "또띠",
-      title: title,
-      content: content,
-    };
-    copyItems = [...copyItems, newItem];
-    setItems(copyItems);
   };
 
   return (
@@ -39,7 +29,14 @@ export default function Create({ items, setItems }) {
           onChange={(e) => setContent(e.target.value)}
           required
         />
-        <button type="submit">글쓰기</button>
+        <button
+          type="submit"
+          onClick={() => {
+            createItem(title, content, "/");
+          }}
+        >
+          글쓰기
+        </button>
       </form>
     </div>
   );

@@ -1,14 +1,11 @@
 import React from "react";
+
 import HeaderBar from "../components/HeaderBar";
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
-import Items from "./Items";
-import styles from "./Main.module.css";
-import { Link, Route, Routes } from "react-router-dom";
 import Create from "../components/Create";
 
-export default function CreatePage({ items, setItems }) {
-  console.log(items);
+export default function CreatePage({ createItem }) {
   return (
     <div className="row justify-content-center">
       <LeftBar></LeftBar>
@@ -16,7 +13,7 @@ export default function CreatePage({ items, setItems }) {
         className={`centerSection col-8 d-flex flex-column align-items-center`}
       >
         <HeaderBar></HeaderBar>
-        <Create setItems={setItems} items={items}></Create>
+        <Create createItem={createItem}></Create>
       </div>
       <RightBar></RightBar>
     </div>

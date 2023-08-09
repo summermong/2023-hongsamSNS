@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Post.module.css";
 import DeleteModal from "./DeleteModal";
 import MoreIcon from "./MoreIcon";
 
-export default function Post({ el, i }) {
+export default function Post({
+  el,
+  i,
+  deleteItem,
+  setUpdatePageBtn,
+  updatePageBtn,
+}) {
   let [moreIconBtn, setMoreIconBtn] = useState(false);
   let [deleteModalBtn, setDeleteModalBtn] = useState(false);
+  useEffect(() => {
+    setMoreIconBtn(false);
+  }, [deleteModalBtn]);
 
   const btnToggle = (btn, setBtn) => {
     if (btn === false) {
@@ -14,8 +23,6 @@ export default function Post({ el, i }) {
     if (btn === true) {
       setBtn(false);
     }
-    console.log(btn);
-    console.log(i);
   };
   return (
     <div className={`${styles.postItem} border mt-3 w-100 position-relative`}>
@@ -54,9 +61,12 @@ export default function Post({ el, i }) {
       <div className="postBody position-relative">
         {moreIconBtn ? (
           <MoreIcon
+            itemId={el["itemId"]}
             deleteModalBtn={deleteModalBtn}
             setDeleteModalBtn={setDeleteModalBtn}
             btnToggle={btnToggle}
+            setUpdatePageBtn={setUpdatePageBtn}
+            updatePageBtn={updatePageBtn}
           />
         ) : null}
         <img
@@ -75,7 +85,11 @@ export default function Post({ el, i }) {
         <p className={`${styles.postFooterLike} m-2 p-1 p-lg-3`}>좋아요</p>
       </div>
       {deleteModalBtn ? (
-        <DeleteModal setDeleteModalBtn={setDeleteModalBtn}></DeleteModal>
+        <DeleteModal
+          setDeleteModalBtn={setDeleteModalBtn}
+          deleteItem={deleteItem}
+          itemId={el["itemId"]}
+        ></DeleteModal>
       ) : null}
     </div>
   );
