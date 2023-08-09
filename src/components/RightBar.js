@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 export default function RightBar() {
   const navigator = useNavigate();
   return (
-    <div className={`${styles.rightBarContainer} row col-lg-2 col-3 `}>
+    <div
+      className={`${styles.rightBarContainer} row col-lg-2 col-3 d-none d-md-flex`}
+    >
       <div
-        className={`${styles.profileContainer} w-md-100 d-flex flex-column mt-3`}
+        className={`${styles.profileContainer} w-md-100 d-flex flex-column mt-3 mt-lg-5`}
       >
         <div className={`${styles.profileText}fs-5 col-12 text-center`}>
           <p>반가워요 침착맨님!</p>
         </div>
         <div
-          className="m-1 col-12 d-flex justify-content-center align-items-center"
+          className="mt-lg-5 col-12 d-flex justify-content-center align-items-center"
           onClick={() => {
             navigator("/profile");
           }}
@@ -25,7 +27,7 @@ export default function RightBar() {
             />
           </div>
         </div>
-        <div className="col-12 d-flex justify-content-center align-items-center mt-1">
+        <div className="col-12 d-flex justify-content-center align-items-center mt-1 mt-lg-5">
           <button
             type="button"
             className="main-back-color fs-5"

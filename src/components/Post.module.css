@@ -10,3 +10,12 @@
 .postFooterTitle {
   flex-grow: 3;
 }
+.postHeaderNama {
+  font-weight: 900;
+}
+.moreIcon {
+  margin-left: auto;
+  margin-right: 20px;
+  color: white;
+  cursor: pointer;
+}

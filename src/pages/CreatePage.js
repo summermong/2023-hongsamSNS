@@ -7,7 +7,8 @@ import styles from "./Main.module.css";
 import { Link, Route, Routes } from "react-router-dom";
 import Create from "../components/Create";
 
-export default function Main() {
+export default function CreatePage({ items, setItems }) {
+  console.log(items);
   return (
     <div className="row justify-content-center">
       <LeftBar></LeftBar>
@@ -15,7 +16,7 @@ export default function Main() {
         className={`centerSection col-8 d-flex flex-column align-items-center`}
       >
         <HeaderBar></HeaderBar>
-        <Create></Create>
+        <Create setItems={setItems} items={items}></Create>
       </div>
       <RightBar></RightBar>
     </div>

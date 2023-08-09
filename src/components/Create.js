@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 
-export default function Create() {
+export default function Create({ items, setItems }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("제목:", title);
-    console.log("내용:", content);
+    let copyItems = [...items];
+    let newItem = {
+      itemId: 3,
+      userId: 0,
+      email: "qwzx16@naver.com",
+      displayName: "또띠",
+      title: title,
+      content: content,
+    };
+    copyItems = [...copyItems, newItem];
+    setItems(copyItems);
   };
 
   return (
@@ -22,7 +31,6 @@ export default function Create() {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
-
         <label htmlFor="content">내용:</label>
         <textarea
           id="content"
@@ -31,7 +39,6 @@ export default function Create() {
           onChange={(e) => setContent(e.target.value)}
           required
         />
-
         <button type="submit">글쓰기</button>
       </form>
     </div>

@@ -26,21 +26,29 @@
   bottom: 40px;
   right: 60px;
 }
-.centerSection {
-  position: absolute;
-  background-color: red;
+.delete-modal-conainer {
+  width: 400px;
+  height: 200px;
+  background-color: #deb4ff;
 }
-@media screen and (max-width: 991px) {
+.modal-btn {
+  width: 60px;
+  height: 30px;
+  padding: 20px;
 }
-
 @media screen and (max-width: 1024px) {
-  .p-fixed {
-    position: relative;
-  }
   .write-btn {
     width: 60px;
     height: 60px;
-    bottom: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 10px;
+  }
+}
+@media screen and (max-width: 572px) {
+  .write-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 40px;
+    right: 10px;
   }
 }

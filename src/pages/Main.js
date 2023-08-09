@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderBar from "../components/HeaderBar";
 import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
@@ -7,32 +7,15 @@ import styles from "./Main.module.css";
 import { Link, Route, Routes } from "react-router-dom";
 import Create from "../components/Create";
 
-export default function Main() {
+export default function Main({ items, setItems }) {
   return (
     <div className="row justify-content-center">
       <LeftBar></LeftBar>
       <div
-        className={`${styles.centerSection} col-8 d-flex flex-column align-items-center`}
+        className={`centerSection col-8 d-flex flex-column align-items-center`}
       >
         <HeaderBar></HeaderBar>
-        <Routes>
-          <Route
-            path="/create"
-            element={
-              <>
-                <Create></Create>
-              </>
-            }
-          ></Route>
-          <Route
-            path="/"
-            element={
-              <>
-                <Items></Items>
-              </>
-            }
-          ></Route>
-        </Routes>
+        <Items items={items} setItems={setItems}></Items>
       </div>
       <RightBar></RightBar>
       <Link to="/create" style={{ textDecoration: "none", color: "black" }}>

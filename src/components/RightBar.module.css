@@ -19,3 +19,8 @@
     display: none;
   }
 }
+@media screen and (max-width: 572px) {
+  .rightBarContainer {
+    display: none;
+  }
+}

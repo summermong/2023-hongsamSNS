@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Post from "../components/Post";
 import styles from "./items.module.css";
 
-export default function Items() {
+export default function Items({ items, setItems }) {
   return (
     <div
-      className={`${styles.itemsContiner} w-75 d-flex flex-column justify-content-center align-items-center`}
+      className={`${styles.itemsContiner} d-flex flex-column justify-content-center align-items-center`}
     >
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
-      <Post></Post>
+      {items.map((el, i) => {
+        return <Post el={el} i={i} key={i} />;
+      })}
     </div>
   );
 }
