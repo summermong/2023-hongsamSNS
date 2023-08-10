@@ -1,0 +1,37 @@
+.nav {
+  box-sizing: border-box;
+}
+.navContainer {
+  position: fixed;
+  height: 100vh;
+  border-right: solid 1px #d4d4d4;
+
+  left: 0;
+}
+.navItem {
+  font-size: 24px;
+}
+.navLogo {
+  font-size: 38px;
+}
+.navItem,
+.navLogo {
+  min-width: 80px;
+  cursor: pointer;
+}
+@media screen and (max-width: 991px) {
+  .navContainer {
+    height: auto;
+    position: relative;
+    border: none;
+    min-width: 440px;
+  }
+  .navItem {
+    text-align: center;
+    font-size: 18px;
+  }
+  .navLogo {
+    text-align: center;
+    font-size: 24px;
+  }
+}

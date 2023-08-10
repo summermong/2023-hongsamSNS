@@ -1,0 +1,20 @@
+{
+  "item": [
+    {
+      "id": 0,
+      "boardId": 0,
+      "title": "제목1",
+      "content": "content1",
+      "memberId": 0,
+      "displayName": "또띠"
+    }
+  ],
+  "user": [
+    {
+      "id": 0,
+      "memberId": 0,
+      "email": "test@test.test",
+      "password": "1234Qwerasdf"
+    }
+  ]
+}
