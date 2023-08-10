@@ -81,7 +81,7 @@ const Join = () => {
   const navigate = useNavigate();
 
   // 회원 가입
-  const SubmitJoinInfo = async (e) => {
+  const SubmitJoinInfo = (e) => {
     e.preventDefault();
 
     // 이메일 중복 확인 여부
@@ -108,7 +108,7 @@ const Join = () => {
     }
 
     // 모든 정보가 제대로 입력될 경우 DB로 정보 전송
-    await axios
+    axios
       .post(
         'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/signup',
         {

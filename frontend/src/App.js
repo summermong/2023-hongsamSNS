@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
-import Login from './api/Login';
-import Join from './api/Join';
-import Home from './api/Home';
+import Login from './pages/Login';
+import Join from './pages/Join';
+import Home from './pages/Home';
 import axios from 'axios';
 
 function App() {
