@@ -4,9 +4,17 @@
       "id": 0,
       "boardId": 0,
       "title": "제목1",
-      "content": "content1",
+      "content": "content1asdsad",
       "memberId": 0,
-      "displayName": "또띠asdasd"
+      "displayName": "또띠"
+    },
+    {
+      "boardId": 0,
+      "title": "asdad",
+      "content": "sadasd",
+      "memberId": 0,
+      "displayName": "또띠",
+      "id": 1
     }
   ],
   "user": [
