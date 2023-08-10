@@ -145,87 +145,89 @@ const Join = () => {
   };
 
   return (
-    <div className={styles.Join}>
-      <div className="text-center mb-5">
-        <h1 className="fw-bolder">로고</h1>
-        <div>계정 정보를 입력해주세요.</div>
-      </div>
-      <form onSubmit={SubmitJoinInfo}>
-        <div className={styles.emailAndConfirmBtn}>
-          <div className={styles.emailinput}>
-            <label htmlFor="idInput" className="form-label">
-              이메일
+    <div className={styles.full}>
+      <div className={styles.Join}>
+        <div className="text-center mb-5">
+          <h1 className="fw-bolder">로고</h1>
+          <div>계정 정보를 입력해주세요.</div>
+        </div>
+        <form onSubmit={SubmitJoinInfo}>
+          <div className={styles.emailAndConfirmBtn}>
+            <div className={styles.emailinput}>
+              <label htmlFor="idInput" className="form-label">
+                이메일
+              </label>
+              <input
+                type="text"
+                id="idInput"
+                className="form-control"
+                required
+                placeholder="아이디로 사용할 이메일을 입력해주세요."
+                value={email}
+                onChange={(e) => ChangeJoinInfo(e, 'id')}
+                ref={emailInput}
+              />
+            </div>
+            <button
+              type="button"
+              className={styles.confirmBtn}
+              onClick={confirmEmail}
+            >
+              이메일 확인
+            </button>
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="displayNameInput" className="form-label">
+              닉네임
             </label>
             <input
               type="text"
-              id="idInput"
+              id="displayNameInput"
               className="form-control"
-              required
-              placeholder="아이디로 사용할 이메일을 입력해주세요."
-              value={email}
-              onChange={(e) => ChangeJoinInfo(e, 'id')}
-              ref={emailInput}
+              placeholder="닉네임을 입력해주세요."
+              value={displayName}
+              onChange={(e) => ChangeJoinInfo(e, 'displayName')}
             />
           </div>
-          <button
-            type="button"
-            className={styles.confirmBtn}
-            onClick={confirmEmail}
-          >
-            이메일 확인
-          </button>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="displayNameInput" className="form-label">
-            닉네임
-          </label>
-          <input
-            type="text"
-            id="displayNameInput"
-            className="form-control"
-            placeholder="닉네임을 입력해주세요."
-            value={displayName}
-            onChange={(e) => ChangeJoinInfo(e, 'displayName')}
-          />
-        </div>
-        <div className="mb-3">
-          <div className={styles.passwordCondition}>
-            <label htmlFor="passwordInput" className="form-label">
-              비밀번호
-            </label>
-            <div className={styles.passwordDesc}>
-              영문/숫자/특수문자가 모두 들어간 8~16자
+          <div className="mb-3">
+            <div className={styles.passwordCondition}>
+              <label htmlFor="passwordInput" className="form-label">
+                비밀번호
+              </label>
+              <div className={styles.passwordDesc}>
+                영문/숫자/특수문자가 모두 들어간 8~16자
+              </div>
             </div>
+            <input
+              type="password"
+              className="form-control"
+              id="passwordInput"
+              placeholder="비밀번호를 입력해주세요."
+              value={password}
+              onChange={(e) => ChangeJoinInfo(e, 'password')}
+              ref={passwordInput}
+            />
           </div>
-          <input
-            type="password"
-            className="form-control"
-            id="passwordInput"
-            placeholder="비밀번호를 입력해주세요."
-            value={password}
-            onChange={(e) => ChangeJoinInfo(e, 'password')}
-            ref={passwordInput}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="repasswordInput" className="form-label">
-            비밀번호 확인
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="repasswordInput"
-            placeholder="비밀번호를 다시 입력하세요."
-            value={rePassword}
-            onChange={(e) => ChangeJoinInfo(e, 'rePassword')}
-            ref={RepasswordInput}
-          />
-        </div>
-        <button type="submit" className={styles.submitBtn}>
-          회원 가입 완료
-        </button>
-      </form>
+          <div className="mb-3">
+            <label htmlFor="repasswordInput" className="form-label">
+              비밀번호 확인
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="repasswordInput"
+              placeholder="비밀번호를 다시 입력하세요."
+              value={rePassword}
+              onChange={(e) => ChangeJoinInfo(e, 'rePassword')}
+              ref={RepasswordInput}
+            />
+          </div>
+          <button type="submit" className={styles.submitBtn}>
+            회원 가입 완료
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

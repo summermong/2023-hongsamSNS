@@ -55,12 +55,12 @@ const Login = ({ setIsLogin }) => {
   };
 
   return (
-    <div className="Login">
-      <div className="text-center mb-5">
-        <h1 className="fw-bolder">최애의 아이돌 💜</h1>
-        <p>당신의 최애를 알리고 새로운 최애를 만나보세요!</p>
+    <div className={styles.Login}>
+      <div className="text-center mb-4">
+        <h1 className="fw-bolder">로고</h1>
+        <p>홍삼SNS입니다.</p>
       </div>
-      <form className="text-black-50" onSubmit={SubmitLogin}>
+      <form className={`text-black-50 ${styles.form}`} onSubmit={SubmitLogin}>
         <div className="mb-3">
           <label htmlFor="emailinput" className="form-label">
             아이디
@@ -91,7 +91,7 @@ const Login = ({ setIsLogin }) => {
           로그인
         </button>
       </form>
-      <div className="d-flex justify-content-evenly mt-4">
+      <div className={`d-flex justify-content-evenly mt-4 ${styles.joinText}`}>
         <div className="text-black-50">아직 계정이 없으신가요?</div>
         <div className="joinText">
           <Link to={'/join'} className={styles.text}>

@@ -1,23 +1,26 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import "./App.css";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import './App.css';
 
-import Main from "./pages/Main";
-import CreatePage from "./pages/CreatePage";
-import Serch from "./pages/Serch";
-import Profile from "./pages/Profile";
-import UpdatePage from "./pages/UpdatePage";
-import Login from "./pages/Login";
-import Join from "./pages/Join";
-import axios from "axios";
+import Main from './pages/Main';
+import CreatePage from './pages/CreatePage';
+import Serch from './pages/Serch';
+import Profile from './pages/Profile';
+import UpdatePage from './pages/UpdatePage';
+import Login from './pages/Login';
+import Join from './pages/Join';
+import axios from 'axios';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
+  // 로그인 세션 여부에 따라 false (로그인) & true (홈)
+  const [isLogin, setIsLogin] = useState(false);
   const navigator = useNavigate();
+
+  // 로그인 세션 확인
   useEffect(() => {
     axios
       .get(
-        "https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/home",
+        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/home',
         { withCredentials: true }
       )
       .then((response) => {
@@ -26,7 +29,7 @@ function App() {
         setIsLogin(data.isLogin);
       })
       .catch((error) => {
-        console.error("Error checking session:", error);
+        console.error('Error checking session:', error);
       });
   }, []);
 
@@ -34,7 +37,7 @@ function App() {
 
   const fecthItems = async () => {
     await axios
-      .get("http://localhost:4000/item")
+      .get('http://localhost:4000/item')
       .then((res) => {
         setItems(res.data);
       })
@@ -49,30 +52,31 @@ function App() {
 
   const createItem = async (title, content, url) => {
     await axios
-      .post("http://localhost:4000/item", {
+      .post('http://localhost:4000/item', {
         boardId: 0,
         title: title,
         content: content,
         memberId: 0,
-        displayName: "또띠",
+        displayName: '또띠',
       })
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        console.log("요청실패");
+        console.log('요청실패');
         console.log(err);
         console.log(title, content);
       });
     navigator(url);
     fecthItems();
   };
+
   const deleteItem = (id) => {
     axios
-      .get("http://localhost:4000/item")
+      .get('http://localhost:4000/item')
       .then((res) => {
-        console.log("delete : ", res.data);
-        console.log("성공");
+        console.log('delete : ', res.data);
+        console.log('성공');
       })
       .catch((err) => {
         console.log(err);
@@ -80,21 +84,23 @@ function App() {
     axios.delete(`http://localhost:4000/item/${id}`);
     fecthItems();
   };
+
   const updateItem = async (title, content, id, url) => {
     await axios.patch(`http://localhost:4000/item/${id}`, {
       boardId: 0,
       title: title,
       content: content,
       memberId: 0,
-      displayName: "또띠",
+      displayName: '또띠',
     });
     navigator(url);
     fecthItems();
   };
+
   const updateText = (id) => {
     let copyItems = [...items];
     const itemIndex = copyItems.findIndex((el) => {
-      return el["id"] === +id;
+      return el['id'] === +id;
     });
     return itemIndex;
   };
