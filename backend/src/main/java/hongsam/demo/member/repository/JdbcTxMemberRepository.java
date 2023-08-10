@@ -1,6 +1,6 @@
-package hongsam.demo.repository;
+package hongsam.demo.member.repository;
 
-import hongsam.demo.domain.MemberDto;
+import hongsam.demo.member.domain.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

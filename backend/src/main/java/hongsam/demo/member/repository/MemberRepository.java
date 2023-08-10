@@ -1,6 +1,6 @@
-package hongsam.demo.repository;
+package hongsam.demo.member.repository;
 
-import hongsam.demo.domain.MemberDto;
+import hongsam.demo.member.domain.MemberDto;
 
 import java.util.Optional;
 

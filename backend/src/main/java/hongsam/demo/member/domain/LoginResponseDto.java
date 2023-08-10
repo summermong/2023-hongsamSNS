@@ -1,4 +1,4 @@
-package hongsam.demo.domain;
+package hongsam.demo.member.domain;
 
 
 import lombok.Getter;

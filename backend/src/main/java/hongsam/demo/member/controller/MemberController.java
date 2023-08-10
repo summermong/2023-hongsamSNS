@@ -1,10 +1,10 @@
-package hongsam.demo.controller;
+package hongsam.demo.member.controller;
 
-import hongsam.demo.domain.EmailDto;
-import hongsam.demo.domain.LogInDto;
-import hongsam.demo.domain.LoginResponseDto;
-import hongsam.demo.domain.MemberDto;
-import hongsam.demo.service.MemberService;
+import hongsam.demo.member.domain.EmailDto;
+import hongsam.demo.member.domain.LogInDto;
+import hongsam.demo.member.domain.LoginResponseDto;
+import hongsam.demo.member.domain.MemberDto;
+import hongsam.demo.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -36,15 +36,14 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public int logIn(@RequestBody LogInDto logInDto, HttpServletRequest request) {
+    public LoginResponseDto logIn(@RequestBody LogInDto logInDto, HttpServletRequest request) {
         LoginResponseDto result = memberService.logIn(logInDto);
         if (result.getLoginResult() == 3) {
             MemberDto member = result.getMember();
             HttpSession session = request.getSession();
             session.setAttribute("loginMember", member);
         }
-        return result.getLoginResult();
+        return result;
     }
-
 
 }
