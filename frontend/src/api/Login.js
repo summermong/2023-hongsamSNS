@@ -19,7 +19,7 @@ const Login = ({ setIsLogin }) => {
   };
 
   // 로그인 시 입력한 정보와 DB의 정보 대조
-  const SubmitLogin = async (e) => {
+  const SubmitLogin = (e) => {
     e.preventDefault();
 
     const user = {
@@ -27,9 +27,9 @@ const Login = ({ setIsLogin }) => {
       password: loginpw,
     };
 
-    await axios
+    axios
       .post(
-        'https://38e0-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/login',
+        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/login',
         user
       )
       .then((response) => {

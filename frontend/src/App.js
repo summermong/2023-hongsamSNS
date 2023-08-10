@@ -1,12 +1,29 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Login from './api/Login';
 import Join from './api/Join';
 import Home from './api/Home';
+import axios from 'axios';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(
+        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/home',
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+        const data = response.data;
+        setIsLogin(data.isLogin);
+      })
+      .catch((error) => {
+        console.error('Error checking session:', error);
+      });
+  }, []);
 
   return (
     <BrowserRouter>
