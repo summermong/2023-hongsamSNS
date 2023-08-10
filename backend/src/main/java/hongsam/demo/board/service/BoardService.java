@@ -5,6 +5,8 @@ import hongsam.demo.board.domain.BoardMemberResponse;
 import hongsam.demo.board.domain.BoardResponse;
 import hongsam.demo.board.repository.BoardRepository;
 import hongsam.demo.board.repository.BoardUpdateDto;
+import hongsam.demo.member.domain.MemberDto;
+import hongsam.demo.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final MemberRepository memberRepository;
+
 
     public List<BoardMemberResponse> getBoards(){
         return boardRepository.getBoards();
@@ -34,7 +38,10 @@ public class BoardService {
 
 
     public Board createBoard(Long memberId, Board board) {
-        //TODO userId가 없으면 예외처리 필요 -> memberRepository
+        Optional<MemberDto> findMember = memberRepository.findById(memberId);
+        if (!findMember.isPresent()) {
+            return null;
+        }
         return boardRepository.createBoard(memberId, board);
     }
 

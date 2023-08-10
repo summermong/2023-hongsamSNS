@@ -31,7 +31,7 @@ public class JdbcTxMemberRepository implements MemberRepository {
     // 회원가입
     @Override
     public MemberDto save(MemberDto memberDTO) {
-        String sql = "insert into member(name, email, password) values(:displayName, :email, :password)";
+        String sql = "insert into member(disPlayName, email, password) values(:displayName, :email, :password)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         SqlParameterSource param = new BeanPropertySqlParameterSource(memberDTO);
