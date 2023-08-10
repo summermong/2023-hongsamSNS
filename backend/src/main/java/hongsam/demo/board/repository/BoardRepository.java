@@ -1,6 +1,7 @@
 package hongsam.demo.board.repository;
 
 import hongsam.demo.board.domain.Board;
+import hongsam.demo.board.domain.BoardMemberResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ public interface BoardRepository {
 
     Board createBoard(Long memberId, Board boardCreateDto);
 
-    List<Board> getBoards();
+    List<BoardMemberResponse> getBoards();
 
     Optional<Board> getBoardById(Long boardId);
 

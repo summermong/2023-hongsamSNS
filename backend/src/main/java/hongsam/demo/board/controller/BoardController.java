@@ -1,6 +1,7 @@
 package hongsam.demo.board.controller;
 
 import hongsam.demo.board.domain.Board;
+import hongsam.demo.board.domain.BoardMemberResponse;
 import hongsam.demo.board.domain.BoardResponse;
 import hongsam.demo.board.repository.BoardUpdateDto;
 import hongsam.demo.board.service.BoardService;
@@ -18,7 +19,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("")
-    public List<Board> getBoards(){
+    public List<BoardMemberResponse> getBoards(){
         return boardService.getBoards();
     }
 

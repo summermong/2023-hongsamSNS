@@ -1,6 +1,8 @@
 package hongsam.demo.board.repository;
 
 import hongsam.demo.board.domain.Board;
+import hongsam.demo.board.domain.BoardMemberResponse;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -36,9 +38,12 @@ public class JdbcTemplateBoardRepository implements BoardRepository{
     }
 
     @Override
-    public List<Board> getBoards() {
-        String sql = "SELECT * FROM board";
-        return template.query(sql, new BoardRowMapper());
+    public List<BoardMemberResponse> getBoards() {
+        String sql = "SELECT b.boardId, b.title, b.content, b.memberId, m.displayName " +
+                "FROM board b " +
+                "JOIN member m ON b.memberId = m.id";
+
+        return template.query(sql, new BoardMemberRowMapper());
     }
 
     @Override
