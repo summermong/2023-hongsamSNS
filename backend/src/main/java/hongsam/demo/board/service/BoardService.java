@@ -1,6 +1,7 @@
 package hongsam.demo.board.service;
 
 import hongsam.demo.board.domain.Board;
+import hongsam.demo.board.domain.BoardMemberResponse;
 import hongsam.demo.board.domain.BoardResponse;
 import hongsam.demo.board.repository.BoardRepository;
 import hongsam.demo.board.repository.BoardUpdateDto;
@@ -17,7 +18,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public List<Board> getBoards(){
+    public List<BoardMemberResponse> getBoards(){
         return boardRepository.getBoards();
     }
 

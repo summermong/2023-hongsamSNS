@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class BoardRowMapper implements RowMapper<Board> {
-
     @Override
     public Board mapRow(ResultSet rs, int rowNum) throws SQLException {
         Board board = new Board();
