@@ -10,6 +10,7 @@ public class Board {
 
     private String title;
     private String content;
+    private Long memberId;
 //    private String date;
 
     public Board() {
@@ -18,5 +19,6 @@ public class Board {
     public Board(String title, String content, Long memberId) {
         this.title = title;
         this.content = content;
+        this.memberId = memberId;
     }
 }
