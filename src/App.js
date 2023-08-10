@@ -1,5 +1,5 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import Login from "./pages/Login";
@@ -9,101 +9,79 @@ import CreatePage from "./pages/CreatePage";
 import Serch from "./pages/Serch";
 import Profile from "./pages/Profile";
 import UpdatePage from "./pages/UpdatePage";
+import useFetch from "./hooks/useFetch";
+import axios from "axios";
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      itemId: 0,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "호날두",
-      title: "0번글!",
-      content: "나는야호날두",
-    },
-    {
-      itemId: 1,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "호머제이심슨",
-      title: "1번글!",
-      content: "우리 멋진 가족!",
-    },
-    {
-      itemId: 2,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "침착맨",
-      title: "2번글!",
-      content: "나는야 침착맨",
-    },
-    {
-      itemId: 3,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "또띠",
-      title: "3번글!",
-      content: "왈왈",
-    },
-    {
-      itemId: 4,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "또띠",
-      title: "4번길!",
-      content: "왈왈",
-    },
-    {
-      itemId: 5,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "또띠",
-      title: "5번글!",
-      content: "왈왈",
-    },
-  ]);
+  const [items, setItems] = useState([]);
   const navigator = useNavigate();
+  const fecthItems = async () => {
+    await axios
+      .get("http://localhost:4000/item")
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  const createItem = (title, content, url) => {
-    let copyItems = [...items];
-    let newItem = {
-      itemId: 3,
-      userId: 0,
-      email: "qwzx16@naver.com",
-      displayName: "또띠",
-      title: title,
-      content: content,
-    };
-    copyItems = [...copyItems, newItem];
-    setItems(copyItems);
+  useEffect(() => {
+    fecthItems();
+  }, []);
+
+  const createItem = async (title, content, url) => {
+    await axios
+      .post("http://localhost:4000/item", {
+        boardId: 0,
+        title: title,
+        content: content,
+        memberId: 0,
+        displayName: "또띠",
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("요청실패");
+        console.log(err);
+        console.log(title, content);
+      });
     navigator(url);
+    fecthItems();
   };
   const deleteItem = (id) => {
-    let copyItems = [...items];
-    const curIndex = copyItems.findIndex((el) => {
-      return el["itemId"] == id;
-    });
-    copyItems.splice(curIndex, 1);
-    setItems(copyItems);
+    axios
+      .get("http://localhost:4000/item")
+      .then((res) => {
+        console.log("delete : ", res.data);
+        console.log("성공");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios.delete(`http://localhost:4000/item/${id}`);
+    fecthItems();
   };
-  const updateItem = (title, content, id, url) => {
-    let copyItems = [...items];
-    for (let i = 0; i < copyItems.length; i++) {
-      if (copyItems[i]["itemId"] === +id) {
-        copyItems[i]["title"] = title;
-        copyItems[i]["content"] = content;
-        break;
-      }
-    }
-    setItems(copyItems);
+  const updateItem = async (title, content, id, url) => {
+    await axios.patch(`http://localhost:4000/item/${id}`, {
+      boardId: 0,
+      title: title,
+      content: content,
+      memberId: 0,
+      displayName: "또띠",
+    });
     navigator(url);
+    fecthItems();
   };
   const updateText = (id) => {
     let copyItems = [...items];
     const itemIndex = copyItems.findIndex((el) => {
-      return el["itemId"] === +id;
+      return el["id"] === +id;
     });
     return itemIndex;
   };
+
   return (
     <>
       <Routes>
@@ -160,7 +138,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/update/:itemId"
+          path="/update/:id"
           element={
             <>
               <UpdatePage

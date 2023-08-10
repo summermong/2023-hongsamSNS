@@ -1,14 +1,34 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassWord] = useState("");
+
+  const inputChange = (e, value, setValue) => {
+    console.log(e.target.value);
+    setValue(e.target.value);
+  };
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    const user = { email, password };
+    console.log(user);
+    axios
+      .post("http://localhost:4000/user", user)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log("err : ", err);
+      });
+  };
+
   return (
     <div>
       <div className="container p-5">
         <h1 className="text-center">로고</h1>
       </div>
       <div className="container">
-        <form className="col-6 m-auto">
-          <label for="exampleInputEmail1" className="form-label">
+        <form className="col-6 m-auto" onSubmit={loginSubmit}>
+          <label htmlFor="exampleInputEmail1" className="form-label">
             이메일
           </label>
           <div className="row mb-3">
@@ -18,19 +38,27 @@ export default function Login() {
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                value={email}
+                onChange={(e) => {
+                  inputChange(e, email, setEmail);
+                }}
               ></input>
             </div>
           </div>
           <div className="row mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               비밀번호
             </label>
             <div className="col-12">
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 id="exampleInputEmail1"
+                value={password}
                 aria-describedby="emailHelp"
+                onChange={(e) => {
+                  inputChange(e, password, setPassWord);
+                }}
               ></input>
             </div>
           </div>

@@ -61,7 +61,7 @@ export default function Post({
       <div className="postBody position-relative">
         {moreIconBtn ? (
           <MoreIcon
-            itemId={el["itemId"]}
+            id={el["id"]}
             deleteModalBtn={deleteModalBtn}
             setDeleteModalBtn={setDeleteModalBtn}
             btnToggle={btnToggle}
@@ -88,7 +88,7 @@ export default function Post({
         <DeleteModal
           setDeleteModalBtn={setDeleteModalBtn}
           deleteItem={deleteItem}
-          itemId={el["itemId"]}
+          itemId={el["id"]}
         ></DeleteModal>
       ) : null}
     </div>

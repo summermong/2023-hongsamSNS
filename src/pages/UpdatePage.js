@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import HeaderBar from "../components/HeaderBar";
 import LeftBar from "../components/LeftBar";
@@ -6,9 +6,11 @@ import RightBar from "../components/RightBar";
 import { useParams } from "react-router-dom";
 
 export default function UpdatePage({ items, updateItem, updateText }) {
-  const { itemId } = useParams();
+  const { id } = useParams();
 
-  const itemIndex = updateText(itemId);
+  const itemIndex = updateText(id);
+  console.log(`id : ${id}`);
+  console.log(`itemIndex : ${itemIndex}`);
 
   const [title, setTitle] = useState(items[itemIndex]["title"]);
   const [content, setContent] = useState(items[itemIndex]["content"]);
@@ -43,7 +45,7 @@ export default function UpdatePage({ items, updateItem, updateText }) {
             <button
               type="submit"
               onClick={() => {
-                updateItem(title, content, itemId, "/");
+                updateItem(title, content, id, "/");
               }}
             >
               글쓰기

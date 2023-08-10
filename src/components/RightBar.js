@@ -24,6 +24,7 @@ export default function RightBar() {
             <img
               className="rounded-circle w-100 h-100"
               src="https://m.segye.com/content/image/2022/12/28/20221228504589.jpg"
+              alt="프로필"
             />
           </div>
         </div>

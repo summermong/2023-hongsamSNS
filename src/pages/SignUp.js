@@ -2,6 +2,17 @@ import React from "react";
 import "./SignUp.css";
 
 export default function SignUp() {
+  // const signUpSubmit = (e) => {
+  //   e.preventDefault();
+  //   const body = { email, password };
+  //   console.log(body);
+  //   axios
+  //     .post("http://localhost:4000/user", body)
+  //     .then((res) => console.log(res))
+  //     .catch((err) => {
+  //       console.log("err : ", err);
+  //     });
+  // };
   return (
     <>
       <div className="container p-5">
@@ -9,7 +20,7 @@ export default function SignUp() {
       </div>
       <div className="container">
         <form className="col-6 m-auto form-min-w">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             이메일
           </label>
           <div className="row mb-3">
@@ -28,7 +39,7 @@ export default function SignUp() {
             </div>
           </div>
           <div className="row mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               닉네임
             </label>
             <div className="col-9">
@@ -41,7 +52,7 @@ export default function SignUp() {
             </div>
           </div>
           <div className="row mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               비밀번호
             </label>
             <div className="col-9">
@@ -54,7 +65,7 @@ export default function SignUp() {
             </div>
           </div>
           <div className="row mb-3">
-            <label for="exampleInputEmail1" className="form-label">
+            <label htmlFor="exampleInputEmail1" className="form-label">
               비밀번호 확인
             </label>
             <div className="col-9">
