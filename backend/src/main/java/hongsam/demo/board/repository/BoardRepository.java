@@ -2,6 +2,7 @@ package hongsam.demo.board.repository;
 
 import hongsam.demo.board.domain.Board;
 import hongsam.demo.board.domain.BoardMemberResponse;
+import hongsam.demo.board.domain.BoardUpdateDto;
 
 import java.util.List;
 import java.util.Optional;
