@@ -3,6 +3,7 @@ package hongsam.demo.board.repository;
 import hongsam.demo.board.domain.Board;
 import hongsam.demo.board.domain.BoardMemberResponse;
 
+import hongsam.demo.board.domain.BoardUpdateDto;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
