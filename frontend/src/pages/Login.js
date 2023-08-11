@@ -29,21 +29,21 @@ const Login = ({ setIsLogin }) => {
 
     axios
       .post(
-        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/login',
+        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/member/login',
         user
       )
       .then((response) => {
         console.log(response);
-        if (response.data === 1) {
+        if (response.data.loginResult === 1) {
           // 존재하지 않는 회원
           setLoginId('');
           setLoginPw('');
           alert('존재하지 않는 아이디입니다.');
-        } else if (response.data === 2) {
+        } else if (response.data.loginResult === 2) {
           // 비밀번호 틀림
           setLoginPw('');
           alert('비밀번호를 다시 확인해주세요.');
-        } else if (response.data === 3) {
+        } else if (response.data.loginResult === 3) {
           // 로그인 성공
           alert('로그인이 완료되었습니다.');
           setIsLogin(true);

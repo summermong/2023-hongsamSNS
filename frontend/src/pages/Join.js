@@ -51,15 +51,15 @@ const Join = () => {
       }
 
       // 유효한 경우 DB에서 해당 이메일 중복 체크
-      const response = await axios.post(
-        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/emailcheck',
+      const response = axios.post(
+        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/member/emailcheck',
         {
           email: email,
         }
       );
 
       // 동일한 이메일을 가진 정보가 있을 경우 리셋
-      if (!response.data) {
+      if (response.data) {
         alert('중복된 이메일입니다.');
         setEmail('');
       } else {
@@ -110,7 +110,7 @@ const Join = () => {
     // 모든 정보가 제대로 입력될 경우 DB로 정보 전송
     axios
       .post(
-        'https://6e32-2406-5900-103c-d815-f572-5dff-7e00-d937.ngrok-free.app/member/signup',
+        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/member/signup',
         {
           email: email,
           displayName: displayName,
