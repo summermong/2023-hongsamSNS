@@ -1,10 +1,9 @@
 package hongsam.demo.member.controller;
 
+import hongsam.demo.member.domain.HomeDto;
+import hongsam.demo.member.domain.MemberDto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,18 +15,22 @@ import java.io.IOException;
 public class HomeController {
 
     @GetMapping("/api/home")
-    public boolean home(HttpServletRequest request, HttpServletResponse response)  {
+    public HomeDto home(HttpServletRequest request, @SessionAttribute(value = "loginMember", required = false) MemberDto member)  {
        String requestURI = request.getRequestURI();
         log.info("인증 체크 실행 {}", requestURI);
         HttpSession session = request.getSession(false);
-
+        HomeDto result = new HomeDto();
         if (session == null || session.getAttribute("loginMember") == null) {
             log.info("미인증 사용자 접근");
 //            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 Unauthorized 상태 코드 설정
-            return false;
+            result.setLoginCheck(false);
+            result.setMemberId(null);
+            return result;
         }
         log.info("인증 성공");
-        return true;
+        result.setLoginCheck(true);
+        result.setMemberId(member.getId());
+        return result;
     }
 
 }
