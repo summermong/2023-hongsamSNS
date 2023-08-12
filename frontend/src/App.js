@@ -1,34 +1,43 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import './App.css';
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import "./App.css";
 
-import Main from './pages/Main';
-import CreatePage from './pages/CreatePage';
-import Serch from './pages/Serch';
-import Profile from './pages/Profile';
-import UpdatePage from './pages/UpdatePage';
-import Login from './pages/Login';
-import Join from './pages/Join';
-import axios from 'axios';
+import Main from "./pages/Main";
+import CreatePage from "./pages/CreatePage";
+import Serch from "./pages/Serch";
+import Profile from "./pages/Profile";
+import UpdatePage from "./pages/UpdatePage";
+import Login from "./pages/Login";
+import Join from "./pages/Join";
+import axios from "axios";
 
 function App() {
   // 로그인 세션 여부에 따라 false (로그인) & true (홈)
   const [isLogin, setIsLogin] = useState(false);
+  const [memberId, setMemberId] = useState();
+  const [displayName, setDisplayName] = useState();
+
+  console.log("memberId : ", memberId);
+
   const navigator = useNavigate();
   // 로그인 세션 확인
   useEffect(() => {
     axios({
-      method: 'get',
-      url: 'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/api/home',
+      method: "get",
+      url: "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/api/home",
       withCredentials: true, // 이 옵션을 설정하여 쿠키와 인증 정보를 함께 보냅니다.
     })
       .then((response) => {
-        console.log(response);
-        const data = response.data;
-        setIsLogin(data);
+        console.log(response.data);
+        const isLogin = response.data.loginCheck;
+        const memberId = response.data.memberId;
+        const displayName = response.data.displayName;
+        setIsLogin(isLogin);
+        setMemberId(memberId);
+        setDisplayName(displayName);
       })
       .catch((error) => {
-        console.error('황윤 에러:', error);
+        console.error("황윤 에러:", error);
       });
   }, []);
 
@@ -36,9 +45,13 @@ function App() {
 
   const fecthItems = async () => {
     await axios
-      .get('http://localhost:4000/item')
+      .get(
+        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board",
+        { withCredentials: true }
+      )
       .then((res) => {
         setItems(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -51,55 +64,74 @@ function App() {
 
   const createItem = async (title, content, url) => {
     await axios
-      .post('http://localhost:4000/item', {
-        boardId: 0,
-        title: title,
-        content: content,
-        memberId: 0,
-        displayName: '또띠',
-      })
+      .post(
+        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${memberId}`,
+        {
+          title: title,
+          content: content,
+        }
+      )
       .then((res) => {
         console.log(res);
+        fecthItems();
+        navigator(url);
       })
       .catch((err) => {
-        console.log('요청실패');
+        console.log("요청실패");
         console.log(err);
         console.log(title, content);
       });
-    navigator(url);
+  };
+
+  const deleteItem = async (itemId) => {
+    console.log("memberId : ", memberId);
+    console.log("boardId : ", itemId);
+    await axios
+      .delete(
+        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${itemId}`,
+        {
+          data: { memberId: memberId },
+        }
+      )
+      .then((response) => {
+        console.log("res : ", response.data.data);
+        alert(response.data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     fecthItems();
   };
 
-  const deleteItem = (id) => {
-    axios
-      .get('http://localhost:4000/item')
+  const updateItem = async (title, content, boardId, url) => {
+    console.log("boardId : ", boardId);
+    console.log("memberId : ", memberId);
+    await axios
+      .patch(
+        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${boardId}`,
+        {
+          withCredentials: true,
+          memberId: memberId,
+          title: title,
+          content: content,
+        }
+      )
       .then((res) => {
-        console.log('delete : ', res.data);
-        console.log('성공');
+        alert(res.data.data);
+        console.log(res.data);
+        navigator(url);
+        fecthItems();
       })
       .catch((err) => {
+        console.log(memberId);
         console.log(err);
       });
-    axios.delete(`http://localhost:4000/item/${id}`);
-    fecthItems();
-  };
-
-  const updateItem = async (title, content, id, url) => {
-    await axios.patch(`http://localhost:4000/item/${id}`, {
-      boardId: 0,
-      title: title,
-      content: content,
-      memberId: 0,
-      displayName: '또띠',
-    });
-    navigator(url);
-    fecthItems();
   };
 
   const updateText = (id) => {
     let copyItems = [...items];
     const itemIndex = copyItems.findIndex((el) => {
-      return el['id'] === +id;
+      return el["boardId"] === +id;
     });
     return itemIndex;
   };
@@ -116,12 +148,23 @@ function App() {
                   items={items}
                   setItems={setItems}
                   deleteItem={deleteItem}
+                  displayName={displayName}
                 ></Main>
               </>
             }
           ></Route>
         ) : (
-          <Route path="/" element={<Login setIsLogin={setIsLogin} />} />
+          <Route
+            path="/"
+            element={
+              //userInfo를 받아오기 위해 setState 전달 isLoin을 true로 전환해 주는 것과 같은 원리
+              <Login
+                setIsLogin={setIsLogin}
+                setMemberId={setMemberId}
+                setDisplayName={setDisplayName}
+              />
+            }
+          />
         )}
         <Route path="/join" element={<Join />} />
         <Route
@@ -149,7 +192,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/update/:id"
+          path="/update/:boardId"
           element={
             <>
               <UpdatePage

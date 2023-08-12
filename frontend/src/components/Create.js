@@ -4,6 +4,9 @@ export default function Create({ createItem }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  console.log("title : ", title);
+  console.log("content : ", content);
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };

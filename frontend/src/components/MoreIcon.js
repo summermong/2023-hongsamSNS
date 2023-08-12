@@ -7,16 +7,17 @@ export default function MoreIcon({
   btnToggle,
   updatePageBtn,
   setUpdatePageBtn,
-  id,
+  el,
 }) {
-  console.log("itemId :" + id);
+  const boardId = el["boardId"];
+  console.log("boardId : ", boardId);
   const navigator = useNavigate();
   return (
     <div className="position-absolute end-0 bg-light d-flex flex-column">
       <p
         className="pe-4 ps-4 pt-1 pb-1 m-0 border-bottom btn"
         onClick={() => {
-          navigator(`/update/${id}`);
+          navigator(`/update/${boardId}`);
           btnToggle(updatePageBtn, setUpdatePageBtn);
         }}
       >

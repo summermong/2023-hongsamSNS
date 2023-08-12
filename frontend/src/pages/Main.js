@@ -6,7 +6,7 @@ import LeftBar from "../components/LeftBar";
 import RightBar from "../components/RightBar";
 import Items from "./Items";
 
-export default function Main({ items, setItems, deleteItem }) {
+export default function Main({ items, setItems, deleteItem, displayName }) {
   return (
     <div className="row justify-content-center">
       <LeftBar></LeftBar>
@@ -20,7 +20,7 @@ export default function Main({ items, setItems, deleteItem }) {
           deleteItem={deleteItem}
         ></Items>
       </div>
-      <RightBar></RightBar>
+      <RightBar displayName={displayName}></RightBar>
       <Link to="/create" style={{ textDecoration: "none", color: "black" }}>
         <div>
           <div className="write-btn rounded-circle border d-flex align-items-center justify-content-center">

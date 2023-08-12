@@ -5,7 +5,6 @@ import MoreIcon from "./MoreIcon";
 
 export default function Post({
   el,
-  i,
   deleteItem,
   setUpdatePageBtn,
   updatePageBtn,
@@ -61,12 +60,12 @@ export default function Post({
       <div className="postBody position-relative">
         {moreIconBtn ? (
           <MoreIcon
-            id={el["id"]}
             deleteModalBtn={deleteModalBtn}
             setDeleteModalBtn={setDeleteModalBtn}
             btnToggle={btnToggle}
             setUpdatePageBtn={setUpdatePageBtn}
             updatePageBtn={updatePageBtn}
+            el={el}
           />
         ) : null}
         <img
@@ -88,7 +87,7 @@ export default function Post({
         <DeleteModal
           setDeleteModalBtn={setDeleteModalBtn}
           deleteItem={deleteItem}
-          itemId={el["id"]}
+          el={el}
         ></DeleteModal>
       ) : null}
     </div>

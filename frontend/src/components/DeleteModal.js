@@ -1,6 +1,9 @@
 import React from "react";
 
-export default function DeleteModal({ setDeleteModalBtn, deleteItem, itemId }) {
+export default function DeleteModal({ setDeleteModalBtn, deleteItem, el }) {
+  const boardId = el["boardId"];
+  console.log("boardId :", boardId);
+
   return (
     <div className="delete-modal-conainer w-75 d-flex flex-column align-items-center justify-content-center rounded-2 position-absolute top-50 start-50 translate-middle">
       <div className="modal-text p-3">
@@ -10,7 +13,7 @@ export default function DeleteModal({ setDeleteModalBtn, deleteItem, itemId }) {
         <button
           className="modal-btn btn btn-light d-flex align-items-center justify-content-center"
           onClick={() => {
-            deleteItem(itemId);
+            deleteItem(boardId);
             setDeleteModalBtn(false);
           }}
         >

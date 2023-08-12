@@ -1,15 +1,15 @@
-import React from 'react';
-import styles from './RightBar.module.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import styles from "./RightBar.module.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function RightBar() {
+export default function RightBar({ displayName }) {
   const navigator = useNavigate();
 
   const handleLogOut = () => {
     axios
       .get(
-        'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/logout',
+        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/logout",
         { withCredentials: true }
       )
       .then((response) => {
@@ -19,7 +19,7 @@ export default function RightBar() {
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
 
@@ -31,12 +31,12 @@ export default function RightBar() {
         className={`${styles.profileContainer} w-md-100 d-flex flex-column mt-3 mt-lg-5`}
       >
         <div className={`${styles.profileText}fs-5 col-12 text-center`}>
-          <p>반가워요 침착맨님!</p>
+          <p>반가워요 {displayName}님!</p>
         </div>
         <div
           className="mt-lg-5 col-12 d-flex justify-content-center align-items-center"
           onClick={() => {
-            navigator('/profile');
+            navigator("/profile/:displayName");
           }}
         >
           <div className="profile-img-box">

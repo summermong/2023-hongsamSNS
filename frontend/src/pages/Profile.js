@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "../components/RightBar.module.css";
+import { useParams } from "react-router-dom";
 
 export default function Profile() {
+  const displayName = useParams();
   return (
     <div>
       <div
         className={`${styles.profileContainer} w-md-100 d-flex flex-column mt-3 mt-lg-5`}
       >
         <div className={`${styles.profileText}fs-5 col-12 text-center`}>
-          <p>반가워요 침착맨님!</p>
+          <p>반가워요 {displayName}님!</p>
         </div>
         <div className="mt-lg-5 col-12 d-flex justify-content-center align-items-center">
           <div className="profile-img-box">

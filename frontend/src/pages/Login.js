@@ -1,19 +1,19 @@
-import styles from './Login.module.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import styles from "./Login.module.css";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Login = ({ setIsLogin }) => {
+const Login = ({ setIsLogin, setMemberId, setDisplayName }) => {
   // input 기본값
-  const [loginid, setLoginId] = useState('');
-  const [loginpw, setLoginPw] = useState('');
+  const [loginid, setLoginId] = useState("");
+  const [loginpw, setLoginPw] = useState("");
 
   // input 변경 시 useState 적용
   const ChangeLoginInfo = (e, inputType) => {
     const value = e.target.value;
-    if (inputType === 'id') {
+    if (inputType === "id") {
       setLoginId(value);
-    } else if (inputType === 'pw') {
+    } else if (inputType === "pw") {
       setLoginPw(value);
     }
   };
@@ -29,29 +29,32 @@ const Login = ({ setIsLogin }) => {
 
     axios
       .post(
-        'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/login',
+        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/login",
         user,
         { withCredentials: true }
       )
       .then((response) => {
         console.log(response);
+
         if (response.data.loginResult === 1) {
           // 존재하지 않는 회원
-          setLoginId('');
-          setLoginPw('');
-          alert('존재하지 않는 아이디입니다.');
+          setLoginId("");
+          setLoginPw("");
+          alert("존재하지 않는 아이디입니다.");
         } else if (response.data.loginResult === 2) {
           // 비밀번호 틀림
-          setLoginPw('');
-          alert('비밀번호를 다시 확인해주세요.');
+          setLoginPw("");
+          alert("비밀번호를 다시 확인해주세요.");
         } else if (response.data.loginResult === 3) {
           // 로그인 성공
-          alert('로그인이 완료되었습니다.');
+          alert("로그인이 완료되었습니다.");
+          setMemberId(response.data.member.id);
+          setDisplayName(response.data.member.displayName);
           setIsLogin(true);
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
   };
 
@@ -72,7 +75,7 @@ const Login = ({ setIsLogin }) => {
             className="form-control"
             placeholder="아이디를 입력하세요."
             value={loginid}
-            onChange={(e) => ChangeLoginInfo(e, 'id')}
+            onChange={(e) => ChangeLoginInfo(e, "id")}
           />
         </div>
         <div className="mb-3">
@@ -85,7 +88,7 @@ const Login = ({ setIsLogin }) => {
             placeholder="비밀번호를 입력하세요."
             id="passwordInput"
             value={loginpw}
-            onChange={(e) => ChangeLoginInfo(e, 'pw')}
+            onChange={(e) => ChangeLoginInfo(e, "pw")}
           />
         </div>
         <button type="submit" className={styles.submitBtn}>
@@ -95,7 +98,7 @@ const Login = ({ setIsLogin }) => {
       <div className={`d-flex justify-content-evenly mt-4 ${styles.joinText}`}>
         <div className="text-black-50">아직 계정이 없으신가요?</div>
         <div className="joinText">
-          <Link to={'/join'} className={styles.text}>
+          <Link to={"/join"} className={styles.text}>
             회원가입
           </Link>
         </div>

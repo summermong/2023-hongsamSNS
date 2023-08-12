@@ -6,14 +6,14 @@ import RightBar from "../components/RightBar";
 import { useParams } from "react-router-dom";
 
 export default function UpdatePage({ items, updateItem, updateText }) {
-  const { id } = useParams();
+  const { boardId } = useParams();
 
-  const itemIndex = updateText(id);
-  console.log(`id : ${id}`);
-  console.log(`itemIndex : ${itemIndex}`);
+  const boardIndex = updateText(boardId);
+  console.log(`boardId : ${boardId}`);
+  console.log(`boardIndex : ${boardIndex}`);
 
-  const [title, setTitle] = useState(items[itemIndex]["title"]);
-  const [content, setContent] = useState(items[itemIndex]["content"]);
+  const [title, setTitle] = useState(items[boardIndex]["title"]);
+  const [content, setContent] = useState(items[boardIndex]["content"]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export default function UpdatePage({ items, updateItem, updateText }) {
             <button
               type="submit"
               onClick={() => {
-                updateItem(title, content, id, "/");
+                updateItem(title, content, boardId, "/");
               }}
             >
               글쓰기
