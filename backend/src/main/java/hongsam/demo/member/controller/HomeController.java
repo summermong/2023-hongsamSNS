@@ -25,11 +25,13 @@ public class HomeController {
 //            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 Unauthorized 상태 코드 설정
             result.setLoginCheck(false);
             result.setMemberId(null);
+            result.setDisplayName(null);
             return result;
         }
         log.info("인증 성공");
         result.setLoginCheck(true);
         result.setMemberId(member.getId());
+        result.setDisplayName(member.getDisplayName());
         return result;
     }
 

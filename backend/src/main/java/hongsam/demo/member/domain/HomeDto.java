@@ -11,4 +11,6 @@ public class HomeDto {
 
     private boolean loginCheck;
     private Long memberId;
+    private String displayName;
+
 }
