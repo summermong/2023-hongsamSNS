@@ -52,7 +52,7 @@ const Join = () => {
 
       // 유효한 경우 DB에서 해당 이메일 중복 체크
       const response = axios.post(
-        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/member/emailcheck',
+        'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/emailcheck',
         {
           email: email,
         }
@@ -110,7 +110,7 @@ const Join = () => {
     // 모든 정보가 제대로 입력될 경우 DB로 정보 전송
     axios
       .post(
-        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/member/signup',
+        'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/signup',
         {
           email: email,
           displayName: displayName,

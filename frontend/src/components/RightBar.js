@@ -1,9 +1,28 @@
-import React from "react";
-import styles from "./RightBar.module.css";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import styles from './RightBar.module.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function RightBar() {
   const navigator = useNavigate();
+
+  const handleLogOut = () => {
+    axios
+      .get(
+        'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/logout',
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+        if (response.data) {
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
   return (
     <div
       className={`${styles.rightBarContainer} row col-lg-2 col-3 d-none d-md-flex`}
@@ -17,7 +36,7 @@ export default function RightBar() {
         <div
           className="mt-lg-5 col-12 d-flex justify-content-center align-items-center"
           onClick={() => {
-            navigator("/profile");
+            navigator('/profile');
           }}
         >
           <div className="profile-img-box">
@@ -32,9 +51,7 @@ export default function RightBar() {
           <button
             type="button"
             className="main-back-color fs-5"
-            onClick={() => {
-              navigator("/login");
-            }}
+            onClick={handleLogOut}
           >
             로그아웃
           </button>

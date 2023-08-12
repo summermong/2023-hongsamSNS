@@ -15,18 +15,17 @@ function App() {
   // 로그인 세션 여부에 따라 false (로그인) & true (홈)
   const [isLogin, setIsLogin] = useState(false);
   const navigator = useNavigate();
-
   // 로그인 세션 확인
   useEffect(() => {
-    axios
-      .get(
-        'https://8d82-2406-5900-103c-d815-c570-c075-5faf-9b86.ngrok-free.app/home',
-        { withCredentials: true }
-      )
+    axios({
+      method: 'get',
+      url: 'https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/api/home',
+      withCredentials: true, // 이 옵션을 설정하여 쿠키와 인증 정보를 함께 보냅니다.
+    })
       .then((response) => {
         console.log(response);
         const data = response.data;
-        setIsLogin(data.isLogin);
+        setIsLogin(data);
       })
       .catch((error) => {
         console.error('황윤 에러:', error);
@@ -125,7 +124,6 @@ function App() {
           <Route path="/" element={<Login setIsLogin={setIsLogin} />} />
         )}
         <Route path="/join" element={<Join />} />
-
         <Route
           path="/create"
           element={
