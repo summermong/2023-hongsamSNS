@@ -8,12 +8,10 @@ import hongsam.demo.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @RestController
@@ -26,7 +24,6 @@ public class MemberController {
 
     @PostMapping("/signup")
     public boolean signUp(@Validated @RequestBody MemberDto memberDTO) {
-//        log.info("member={}", member);
         return memberService.signUp(memberDTO);
     }
 
@@ -42,8 +39,21 @@ public class MemberController {
             MemberDto member = result.getMember();
             HttpSession session = request.getSession();
             session.setAttribute("loginMember", member);
+            log.info("세션 생성 완료");
         }
         return result;
+    }
+
+    @GetMapping("logout")
+    public boolean logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loginMember") == null) {
+            log.info("로그아웃 불가");
+            return false;
+        }
+        session.invalidate();
+        log.info("로그아웃 성공");
+        return true;
     }
 
 }
