@@ -1,0 +1,53 @@
+{
+  "item": [
+    {
+      "id": 0,
+      "boardId": 0,
+      "title": "제목1",
+      "content": "content1asdsad",
+      "memberId": 0,
+      "displayName": "또띠"
+    },
+    {
+      "boardId": 0,
+      "title": "asdad",
+      "content": "sadasd",
+      "memberId": 0,
+      "displayName": "또띠",
+      "id": 1
+    },
+    {
+      "boardId": 0,
+      "title": "asdad",
+      "content": "sadasd",
+      "memberId": 0,
+      "displayName": "또띠",
+      "id": 1
+    }
+  ],
+  "user": [
+    {
+      "id": 0,
+      "memberId": 0,
+      "email": "test@test.test",
+      "password": "1234Qwerasdf"
+    },
+    {
+      "email": "2514o_o@naver.com",
+      "displayName": "윤",
+      "password": "123qwe!!!",
+      "rePassword": "123qwe!!!",
+      "id": 1
+    },
+    {
+      "email": "2514o_o@naver.com",
+      "password": "123qwe!!!",
+      "id": 2
+    },
+    {
+      "email": "ddz2@d.com",
+      "password": "d",
+      "id": 3
+    }
+  ]
+}

@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  /* Color */
+  --main-color: #deb4ff;
+  --hover-color: #eacdfe;
+  --lightmain-color: #f4e4ff;
+  --gray-color: #828282;
+  --lightgray-color: #9a9a9a;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*#root {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  font-family: "Pretendard-Regular";
+  min-height: 100vh;
+  margin: 0;
+}*/
+
+.main-back-color {
+  background-color: #deb4ff;
+  color: #f4f4f4;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  font-weight: 900;
+}
+.main-color {
+  background-color: #deb4ff;
+  color: #f4f4f4;
+}
+.profile-img-box {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+.p-fixed {
+  position: fixed;
+}
+.write-btn {
+  width: 90px;
+  height: 90px;
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+}
+.delete-modal-conainer {
+  width: 400px;
+  height: 200px;
+  background-color: #deb4ff;
+}
+.modal-btn {
+  width: 60px;
+  height: 30px;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+label {
+  color: var(--main-color);
+  font-weight: bolder;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+input::placeholder {
+  color: var(--gray-color) !important;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1024px) {
+  .write-btn {
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 10px;
   }
-  to {
-    transform: rotate(360deg);
+}
+@media screen and (max-width: 572px) {
+  .write-btn {
+    width: 40px;
+    height: 40px;
+    bottom: 40px;
+    right: 10px;
   }
 }
