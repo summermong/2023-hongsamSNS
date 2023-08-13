@@ -8,10 +8,9 @@ export default function RightBar({ displayName }) {
 
   const handleLogOut = () => {
     axios
-      .get(
-        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/logout",
-        { withCredentials: true }
-      )
+      .get("https://0fa4-52-78-173-252.ngrok-free.app/member/logout", {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response);
         if (response.data) {
