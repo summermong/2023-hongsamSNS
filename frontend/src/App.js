@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     axios({
       method: "get",
-      url: "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/api/home",
+      url: "https://0fa4-52-78-173-252.ngrok-free.app/api/home",
       withCredentials: true, // 이 옵션을 설정하여 쿠키와 인증 정보를 함께 보냅니다.
     })
       .then((response) => {
@@ -45,10 +45,9 @@ function App() {
 
   const fecthItems = async () => {
     await axios
-      .get(
-        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board",
-        { withCredentials: true }
-      )
+      .get("https://0fa4-52-78-173-252.ngrok-free.app/board", {
+        withCredentials: true,
+      })
       .then((res) => {
         setItems(res.data);
         console.log(res.data);
@@ -64,13 +63,10 @@ function App() {
 
   const createItem = async (title, content, url) => {
     await axios
-      .post(
-        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${memberId}`,
-        {
-          title: title,
-          content: content,
-        }
-      )
+      .post(`https://0fa4-52-78-173-252.ngrok-free.app/board/${memberId}`, {
+        title: title,
+        content: content,
+      })
       .then((res) => {
         console.log(res);
         fecthItems();
@@ -87,12 +83,9 @@ function App() {
     console.log("memberId : ", memberId);
     console.log("boardId : ", itemId);
     await axios
-      .delete(
-        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${itemId}`,
-        {
-          data: { memberId: memberId },
-        }
-      )
+      .delete(`https://0fa4-52-78-173-252.ngrok-free.app/board/${itemId}`, {
+        data: { memberId: memberId },
+      })
       .then((response) => {
         console.log("res : ", response.data.data);
         alert(response.data.data);
@@ -107,15 +100,12 @@ function App() {
     console.log("boardId : ", boardId);
     console.log("memberId : ", memberId);
     await axios
-      .patch(
-        `https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/board/${boardId}`,
-        {
-          withCredentials: true,
-          memberId: memberId,
-          title: title,
-          content: content,
-        }
-      )
+      .patch(`https://0fa4-52-78-173-252.ngrok-free.app/board/${boardId}`, {
+        withCredentials: true,
+        memberId: memberId,
+        title: title,
+        content: content,
+      })
       .then((res) => {
         alert(res.data.data);
         console.log(res.data);

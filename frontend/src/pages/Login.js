@@ -28,11 +28,9 @@ const Login = ({ setIsLogin, setMemberId, setDisplayName }) => {
     };
 
     axios
-      .post(
-        "https://4c32-2406-5900-103c-d815-c8b5-cef9-8bb-7e8.ngrok-free.app/member/login",
-        user,
-        { withCredentials: true }
-      )
+      .post("https://0fa4-52-78-173-252.ngrok-free.app/member/login", user, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response);
 
