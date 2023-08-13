@@ -1,0 +1,9 @@
+.itemsContiner {
+  overflow: scroll;
+  width: 75%;
+}
+@media screen and (max-width: 572px) {
+  .itemsContiner {
+    width: 120%;
+  }
+}

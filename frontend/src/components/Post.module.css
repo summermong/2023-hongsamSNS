@@ -1,0 +1,21 @@
+.postItem {
+  box-sizing: border-box;
+}
+.postFooterNickName {
+  flex-grow: 0;
+}
+.postFooterLike {
+  flex-grow: 0;
+}
+.postFooterTitle {
+  flex-grow: 3;
+}
+.postHeaderNama {
+  font-weight: 900;
+}
+.moreIcon {
+  margin-left: auto;
+  margin-right: 20px;
+  color: white;
+  cursor: pointer;
+}
